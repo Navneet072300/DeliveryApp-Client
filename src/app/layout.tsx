@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
 import { auth } from "@clerk/nextjs/server";
+import Footer from "@/components/Footer";
 
 const urbanist = Urbanist({ subsets: ["latin"], variable: "--font-urbanist" });
 
@@ -30,6 +31,8 @@ export default function RootLayout({
           />
           <Header userId={userId} />
           {children}
+
+          <Footer />
         </body>
       </html>
     </ClerkProvider>

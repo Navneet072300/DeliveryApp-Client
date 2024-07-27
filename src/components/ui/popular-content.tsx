@@ -31,7 +31,7 @@ function PopularContent({ data }: PopularContentProps) {
           </div>
         </div>
         <Link href={`/menu/${data.id}`} className=" w-full px-2 text-center">
-          <CardTitle className=" text-neutral-700 truncate w-full">
+          <CardTitle className=" text-neutral-700  w-full mb-3 z-50">
             {data.name}
           </CardTitle>
         </Link>
