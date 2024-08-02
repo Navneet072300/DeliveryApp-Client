@@ -2,27 +2,27 @@
 
 import Box from "@/components/Box";
 import { cn } from "@/lib/utils";
-import { Category } from "@/types-db";
+import { Kitchen } from "@/types-db";
 import { query } from "firebase/firestore";
 import { Check } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import qs from "query-string";
 
-interface CategoryFiltersProps {
-  categories: Category[];
+interface KitchenFiltersProps {
+  kitchens: Kitchen[];
 }
 
-const CategoryFilters = ({ categories }: CategoryFiltersProps) => {
+const KitchenFilters = ({ kitchens }: KitchenFiltersProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const handleCLick = (category: string) => {
+  const handleCLick = (kitchen: string) => {
     const currentParams = Object.fromEntries(searchParams.entries());
 
-    if (currentParams.category === category) {
-      delete currentParams.category;
+    if (currentParams.kitchen === kitchen) {
+      delete currentParams.kitchen;
     } else {
-      currentParams.category = category;
+      currentParams.kitchen = kitchen;
     }
 
     const href = qs.stringifyUrl({
@@ -33,19 +33,19 @@ const CategoryFilters = ({ categories }: CategoryFiltersProps) => {
   };
   return (
     <Box className=" flex-col gap-2 border-b pb-4 cursor-pointer">
-      <h2 className=" text-xl font-semibold text-neutral-700">Category</h2>
+      <h2 className=" text-xl font-semibold text-neutral-700">Kitchen</h2>
       <Box className=" flex-col gap-2 mt-2">
-        {categories?.map((category) => (
+        {kitchens?.map((kitchen) => (
           <div
-            onClick={() => handleCLick(category.name)}
-            key={category.id}
+            onClick={() => handleCLick(kitchen.value)}
+            key={kitchen.id}
             className={cn(
               "text-sm font-semibold text-neutral-500 flex items-center gap-2",
-              category.name === searchParams.get("category") && "text-hero"
+              kitchen.value === searchParams.get("kitchen") && "text-hero"
             )}
           >
-            <p>{category.name}</p>
-            {category.name === searchParams.get("category") && (
+            <p>{kitchen.name}</p>
+            {kitchen.value === searchParams.get("kitchen") && (
               <Check className="w-4 h-4 text-hero" />
             )}
           </div>
@@ -55,4 +55,4 @@ const CategoryFilters = ({ categories }: CategoryFiltersProps) => {
   );
 };
 
-export default CategoryFilters;
+export default KitchenFilters;
