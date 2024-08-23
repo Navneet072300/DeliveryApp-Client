@@ -8,7 +8,7 @@ interface GalleryContentImageProps {
 
 const GalleryContentImage = ({ url }: GalleryContentImageProps) => {
   return (
-    <div className=" w-full h-full aspect-square sm:rounded overflow-hidden">
+    <div className=" w-full h-full aspect-square sm:rounded overflow-hidden relative">
       <Image
         src={url}
         alt={url}
